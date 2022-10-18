@@ -32,3 +32,4 @@ The REST API must expose the following endpoints:
 
 `DELETE`, `PUT`, and `PATCH` requests to `/articles/<id>`
 - Returns response code 405 because this public API does not allow articles to be deleted or modified.
+# medieval-home
