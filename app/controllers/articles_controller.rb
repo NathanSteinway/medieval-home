@@ -5,4 +5,10 @@ class ArticlesController < ApplicationController
         #Since there are no articles to return yet, this controller is returning an empty array.
         render json: Article.all
     end
+    
+    # Here I am staging a POST request to the server so it may receive a payload representing an article
+    # When complete this will insert the article into the SQLite database if valid, as well as return the new object's info in JSON format as specified in the assignment's README.md
+    def create
+
+    end
 end
