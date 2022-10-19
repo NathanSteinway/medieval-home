@@ -1,8 +1,9 @@
 class ArticlesController < ApplicationController
     def index
-        #Instructs active record model to return all items in database in the form of JSON
-        #Now that this is hooked up, this controller will return all items in the articles table.
-        #Since there are no articles to return yet, this controller is returning an empty array.
+        # Instructs active record model to return all items in database in the form of JSON
+        # Now that this is hooked up, this controller will return all items in the articles table.
+        # Since there are no articles to return yet, this controller is returning an empty array.
+        # According to the documentation, you can make an order request at the controller level!
         render json: Article.all.order("published_at DESC")
     end
     
