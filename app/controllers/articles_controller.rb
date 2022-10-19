@@ -13,6 +13,12 @@ class ArticlesController < ApplicationController
     def show
         render json: Article.find(params[:id])
     end
+
+    # destroy is another action that attempts to delete the model specified by it's ID in the URL
+    # this is meant to throw an error if this action is called stating that this isn't allowed
+    def destroy
+        render json: Article.errors, status: :method_not_allowed
+    end
     
     # Here I am staging a POST request to the server so it may receive a payload representing an article
     # When complete this will insert the article into the SQLite database if valid, as well as return the new object's info in JSON format as specified in the assignment's README.md
