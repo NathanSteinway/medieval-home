@@ -9,6 +9,6 @@ class ArticlesController < ApplicationController
     # Here I am staging a POST request to the server so it may receive a payload representing an article
     # When complete this will insert the article into the SQLite database if valid, as well as return the new object's info in JSON format as specified in the assignment's README.md
     def create
-
+        # needs logic
     end
 end
