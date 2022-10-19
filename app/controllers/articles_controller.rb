@@ -14,12 +14,13 @@ class ArticlesController < ApplicationController
         # Documentation lead me to this...
 
         # You can assign Article to a variable and use .new, which makes a record but doesn't save it to SQLite db right away
+        # Fixed article so that params may be added dynamically
         article = Article.new(
-            title: 'Get Ready for the Big Chill', 
-            content: 'Winter is coming, and Americans may get a cold shock when they get their heating bills, according to a report released last week by the U.S. Energy Information Administration (EIA) that deserves more attention. Bundle up and set your thermostat at 68 degrees, or prepare to pay a bundle.',
-            author: 'The Editorial Board',
-            category: 'Opinion',
-            published_at: '2022-10-19T18:24:48+0000')
+            title: params[:title], 
+            content: params[:content],
+            author: params[:author],
+            category: params[:category],
+            published_at: params[:published_at])
 
         # Documentation says that .save lets you return a success response if the new item saves properly
         
@@ -31,5 +32,15 @@ class ArticlesController < ApplicationController
         else
             render json: article.errors, status: :unprocessable_entity
         end
+    end
+
+    # For the purposes of this exercise a private method isn't really necessary but I came across it while reading documentation so hey why not
+    # A little security never hurt anyone
+    private
+
+    # This makes it so that someone can't pass in whatever params they feel like
+    # article variable will only accept title, content, author, category, and published_at as parameters
+    def article_params
+        params.require(:article).permit(:title, :content, :author, :category, :published_at)
     end
 end
