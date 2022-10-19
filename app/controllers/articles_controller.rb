@@ -15,12 +15,7 @@ class ArticlesController < ApplicationController
 
         # You can assign Article to a variable and use .new, which makes a record but doesn't save it to SQLite db right away
         # Fixed article so that params may be added dynamically
-        article = Article.new(
-            title: params[:title], 
-            content: params[:content],
-            author: params[:author],
-            category: params[:category],
-            published_at: params[:published_at])
+        article = Article.new(article_params)
 
         # Documentation says that .save lets you return a success response if the new item saves properly
         
