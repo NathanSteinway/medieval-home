@@ -17,6 +17,9 @@ class ArticlesController < ApplicationController
     # destroy is another action that attempts to delete the model specified by it's ID in the URL
     # this is meant to throw an error if this action is called stating that this isn't allowed
     def destroy
+        article_id = Article.find(params[:id])
+
+        render json: article_id.errors, status: :method_not_allowed
     end
     
     # Here I am staging a POST request to the server so it may receive a payload representing an article
