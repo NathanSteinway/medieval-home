@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
 
     # show action is a GET request that allows you to query a model by it's ID
     def show
-        render json: Article.find(4)
+        render json: Article.find(params[:id])
     end
     
     # Here I am staging a POST request to the server so it may receive a payload representing an article
