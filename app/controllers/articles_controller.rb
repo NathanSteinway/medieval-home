@@ -9,11 +9,27 @@ class ArticlesController < ApplicationController
     # Here I am staging a POST request to the server so it may receive a payload representing an article
     # When complete this will insert the article into the SQLite database if valid, as well as return the new object's info in JSON format as specified in the assignment's README.md
     def create
-        Article.create(
+
+        # Article.create made an entry to SQLite db even if the data types were wrong
+        # Documentation lead me to this...
+
+        # You can assign Article to a variable and use .new, which makes a record but doesn't save it to SQLite db right away
+        article = Article.new(
             title: 'Get Ready for the Big Chill', 
             content: 'Winter is coming, and Americans may get a cold shock when they get their heating bills, according to a report released last week by the U.S. Energy Information Administration (EIA) that deserves more attention. Bundle up and set your thermostat at 68 degrees, or prepare to pay a bundle.',
             author: 'The Editorial Board',
             category: 'Opinion',
             published_at: '2022-10-19T18:24:48+0000')
+
+        # Documentation says that .save lets you return a success response if the new item saves properly
+        
+        if article.save
+            render json: article
+
+        # If it doesn't successfully pass, .errors lets you throw an error of your choice
+
+        else
+            render json: article.errors, status: :unprocessable_entity
+        end
     end
 end
