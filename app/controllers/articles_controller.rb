@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
         # Documentation says that .save lets you return a success response if the new item saves properly
         
         if article.save
-            render json: article
+            render json: article, status: :created
 
         # If it doesn't successfully pass, .errors lets you throw an error of your choice
 
