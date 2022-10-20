@@ -65,6 +65,7 @@ GEM
     diff-lcs (1.5.0)
     erubi (1.11.0)
     ffi (1.15.5)
+    ffi (1.15.5-x64-mingw32)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -83,6 +84,8 @@ GEM
     minitest (5.16.2)
     msgpack (1.5.4)
     nio4r (2.5.8)
+    nokogiri (1.13.8-x64-mingw32)
+      racc (~> 1.4)
     nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
     puma (4.3.12)
@@ -154,12 +157,15 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.10)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2022.5)
+      tzinfo (>= 1.0.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.6.0)
 
 PLATFORMS
+  x64-mingw32
   x86_64-darwin-21
 
 DEPENDENCIES
@@ -178,4 +184,4 @@ RUBY VERSION
    ruby 2.7.6p219
 
 BUNDLED WITH
-   2.3.10
+   2.3.24
