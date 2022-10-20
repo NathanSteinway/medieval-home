@@ -26,12 +26,21 @@ class ArticlesController < ApplicationController
     # When complete this will insert the article into the SQLite database if valid, as well as return the new object's info in JSON format as specified in the assignment's README.md
     def create
 
+        params.require([:title, :content, :author, :category, :published_at])
+
         # Article.create made an entry to SQLite db even if the data types were wrong
         # Documentation lead me to this...
 
         # You can assign Article to a variable and use .new, which makes a record but doesn't save it to SQLite db right away
-        # Fixed article so that params may be added dynamically
-        article = Article.new(article_params)
+        # Explicitly defining the params that go into this model
+        article = Article.new do |a|
+            a.title = params[:title]
+            a.content = params[:content]
+            a.author = params[:author]
+            a.category = params[:category]
+            a.published_at = params[:published_at]
+        end
+        
 
         # Documentation says that .save lets you return a success response if the new item saves properly
         
@@ -43,15 +52,5 @@ class ArticlesController < ApplicationController
         else
             render json: article.errors, status: :unprocessable_entity
         end
-    end
-
-    # For the purposes of this exercise a private method isn't really necessary but I came across it while reading documentation so hey why not
-    # A little security never hurt anyone
-    private
-
-    # This makes it so that someone can't pass in whatever params they feel like
-    # article variable will only accept title, content, author, category, and published_at as parameters
-    def article_params
-        params.permit(:title, :content, :author, :category, :published_at)
     end
 end
