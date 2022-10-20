@@ -28,6 +28,12 @@ class ArticlesController < ApplicationController
 
         params.require([:title, :content, :author, :category, :published_at])
 
+        # Prevents title from exceeding 40 characters
+        if params[:title].length > 40
+            render status: :unprocessable_entity
+            return
+        end
+
         # Article.create made an entry to SQLite db even if the data types were wrong
         # Documentation lead me to this...
 
@@ -52,5 +58,8 @@ class ArticlesController < ApplicationController
         else
             render json: article.errors, status: :unprocessable_entity
         end
+
+    rescue ActionController::ParameterMissing
+        render status: :unprocessable_entity
     end
 end
