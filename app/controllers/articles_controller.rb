@@ -6,13 +6,13 @@ class ArticlesController < ApplicationController
         # Now that this is hooked up, this controller will return all items in the articles table.
         # Since there are no articles to return yet, this controller is returning an empty array.
         # According to the documentation, you can make an order request at the controller level!
-        render json: Article.all.order("published_at DESC")
+        render json: Article.all.order("published_at DESC"), :except => [:created_at, :updated_at]
     end
 
     # show action is a GET request that allows you to query a model by it's ID
     def show
 
-        render json: Article.find(params[:id])
+        render json: Article.find(params[:id]), :except => [:created_at, :updated_at]
 
     rescue ActiveRecord::RecordNotFound
         render status: :not_found
@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
         # Documentation says that .save lets you return a success response if the new item saves properly
         
         if article.save
-            render json: article, status: :created
+            render json: article, :except => [:created_at, :updated_at], status: :created
 
         # If it doesn't successfully pass, .errors lets you throw an error of your choice
 
