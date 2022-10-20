@@ -12,12 +12,15 @@ class ArticlesController < ApplicationController
     # show action is a GET request that allows you to query a model by it's ID
     def show
 
+        # DRY principles, simplified and included exception handling for created_at and updated_at
         render json: Article.find(params[:id]), :except => [:created_at, :updated_at]
 
+    # This rescue catches an error and returns it as a 404
     rescue ActiveRecord::RecordNotFound
         render status: :not_found
     end
 
+    # "handler" that interacts with delete/put/patch in routes.rb
     def not_allowed
         render status: :method_not_allowed
     end
@@ -54,7 +57,8 @@ class ArticlesController < ApplicationController
         else
             render json: article.errors, status: :unprocessable_entity
         end
-
+    
+    # catches error and returns as 422
     rescue ActionController::ParameterMissing
         render status: :unprocessable_entity
     end
