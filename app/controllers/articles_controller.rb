@@ -52,6 +52,6 @@ class ArticlesController < ApplicationController
     # This makes it so that someone can't pass in whatever params they feel like
     # article variable will only accept title, content, author, category, and published_at as parameters
     def article_params
-        params.require(:article).permit(:title, :content, :author, :category, :published_at)
+        params.permit(:title, :content, :author, :category, :published_at)
     end
 end
