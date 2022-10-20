@@ -11,7 +11,11 @@ class ArticlesController < ApplicationController
 
     # show action is a GET request that allows you to query a model by it's ID
     def show
+
         render json: Article.find(params[:id])
+
+    rescue ActiveRecord::RecordNotFound
+        render status: :not_found
     end
 
     def not_allowed

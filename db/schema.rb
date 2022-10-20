@@ -12,8 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2022_10_18_234529) do
 
-  # Below is the create_table action that generates the table that our controller is referencing.
-
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.string "content"
